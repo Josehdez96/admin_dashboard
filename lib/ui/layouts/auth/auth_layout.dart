@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/background_twitter.dart';
 
 class AuthLayout extends StatelessWidget {
@@ -32,7 +34,6 @@ class _DesktopBody extends StatelessWidget {
       color: Colors.blue,
       child: Row(
         children: [
-          // Twitter background
           BackgroundTwitter(),
 
           // View Container
@@ -40,6 +41,13 @@ class _DesktopBody extends StatelessWidget {
             width: 600,
             height: double.infinity,
             color: Colors.black,
+            child: Column(
+              children: [
+                CustomTitle(),
+                SizedBox(height: 50),
+                // Expanded(child: child)
+              ],
+            ),
           )
         ],
       ),
