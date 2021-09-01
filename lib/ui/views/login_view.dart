@@ -48,12 +48,12 @@ class LoginView extends StatelessWidget {
                     SizedBox(height: 20),
 
                     TextFormField(
-                      onChanged: ( value ) => loginFormProvider.password = value,
                       validator: ( value ) {
                         if ( value == null || value.isEmpty ) return 'Ingrese su contraseña';
                         if ( value.length < 6 ) return 'La contraseña debe ser de por lo menos 6 caracteres';
                         return null; // Válido
                       },
+                      onChanged: ( value ) => loginFormProvider.password = value,
                       obscureText: true,
                       style: TextStyle(
                         color: Colors.white
