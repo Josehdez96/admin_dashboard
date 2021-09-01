@@ -1,10 +1,11 @@
-import 'package:admin_dashboard/providers/login_form_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:admin_dashboard/providers/login_form_provider.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
-import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({ Key? key }) : super(key: key);
@@ -29,6 +30,11 @@ class LoginView extends StatelessWidget {
                   children: [
 
                     TextFormField(
+                      validator: ( value ) {
+                        if (!EmailValidator.validate(value ?? '')) return 'Email no valido';
+                        return null;
+                      },
+                      onChanged: ( value ) => loginFormProvider.email = value,
                       style: TextStyle(
                         color: Colors.white
                       ),
@@ -42,6 +48,7 @@ class LoginView extends StatelessWidget {
                     SizedBox(height: 20),
 
                     TextFormField(
+                      onChanged: ( value ) => loginFormProvider.password = value,
                       validator: ( value ) {
                         if ( value == null || value.isEmpty ) return 'Ingrese su contraseña';
                         if ( value.length < 6 ) return 'La contraseña debe ser de por lo menos 6 caracteres';
