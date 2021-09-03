@@ -52,7 +52,7 @@ class _DesktopBody extends StatelessWidget {
       color: Colors.blue,
       child: Row(
         children: [
-          BackgroundTwitter(),
+          Expanded(child: BackgroundTwitter()),
           // View Container
           Container(
             width: 600,
