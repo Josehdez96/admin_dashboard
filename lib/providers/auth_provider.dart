@@ -18,11 +18,10 @@ class AuthProvider extends ChangeNotifier {
   }
 
   login(String email, String password) {
-    //TODO: http request - Mock http token response
-    _token = 'jiasgdyugaydbajui74wdfjkhaSDB.SUDYUW5ss';
+    // TODO: http request - Mock http token response
+    this._token = 'jiasgdyug.aydbajui74wdfjkhaSDB.SUDYUW5ss';
     LocalStorage.prefs.setString('token', _token!);
-    // TODO: navigate to dashboard
-    notifyListeners();
+    isAuthenticated();
   }
 
   Future<bool> isAuthenticated() async {
