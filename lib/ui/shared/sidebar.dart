@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:admin_dashboard/ui/shared/widgets/menu_item.dart';
+import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
 
 class Sidebar extends StatelessWidget {
@@ -13,7 +15,15 @@ class Sidebar extends StatelessWidget {
       child: ListView(
         physics: ClampingScrollPhysics(),
         children: [
-          Logo()
+          Logo(),
+          SizedBox(height: 50),
+          TextSeparator(text: 'main'),
+          MenuItem(
+            text: 'Dashboard',
+            icon: Icons.compass_calibration_outlined,
+            isActive: false,
+            onPressed: () {}
+          )
         ],
       ),
     );
