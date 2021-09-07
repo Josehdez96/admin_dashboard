@@ -18,4 +18,14 @@ class CustomInput {
     labelStyle: TextStyle(color: Colors.grey),
     prefixIcon: Icon(icon, color: Colors.grey),
   );
+
+  static InputDecoration searchInputDecoration({
+    required String hint,
+    required IconData icon,
+  }) => InputDecoration(
+    border: InputBorder.none,
+    enabledBorder: InputBorder.none,
+    hintText: hint,
+    prefixIcon: Icon(icon, color: Colors.grey)
+  );
 }
