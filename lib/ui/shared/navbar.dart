@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/ui/shared/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/shared/widgets/navbar_avatar.dart';
 import 'package:admin_dashboard/ui/shared/widgets/notification_indicator.dart';
@@ -8,23 +9,29 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return Container(
       width: double.infinity,
       height: 50,
       decoration: buildBoxDecoration(),
-      child: Row(
+      child: Stack(
         children: [
-          SizedBox(width: 10),
-          // TODO Hamburger icon
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 250),
-            child: Searchbar(),
+          Row(
+            children: [
+              if (size.width <= 700) IconButton(onPressed: () {}, icon: Icon(Icons.menu_outlined)),
+              SizedBox(width: 10),
+              if (size.width > 440) ConstrainedBox(constraints: BoxConstraints(maxWidth: 250), child: Searchbar()),
+              Spacer(),
+              NotificationIndicator(),
+              SizedBox(width: 15),
+              NavbarAvatar(),
+              SizedBox(width: 10)
+            ],
           ),
-          Spacer(),
-          NotificationIndicator(),
-          SizedBox(width: 15),
-          NavbarAvatar(),
-          SizedBox(width: 10)
+
+          if (size.width < 700) Sidebar()
         ],
       ),
     );
