@@ -34,7 +34,7 @@ class _MenuItemState extends State<MenuItem> {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: widget.isActive ? null : () => widget.onPressed,
+            onTap: widget.isActive ? null : () => widget.onPressed(),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: MouseRegion(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/ui/shared/widgets/menu_item.dart';
 import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
@@ -18,7 +19,7 @@ class Sidebar extends StatelessWidget {
           Logo(),
           SizedBox(height: 50),
           TextSeparator(text: 'main'),
-          MenuItem(text: 'Dashboard', icon: Icons.compass_calibration_outlined, onPressed: () {}),
+          MenuItem(text: 'Dashboard', icon: Icons.compass_calibration_outlined, onPressed: () => SideMenuProvider.closeMenu()),
           MenuItem(text: 'Orders', icon: Icons.shopping_cart_outlined, onPressed: () {}),
           MenuItem(text: 'Analytic', icon: Icons.show_chart_outlined, onPressed: () {}),
           MenuItem(text: 'Categories', icon: Icons.layers_outlined, onPressed: () {}),

@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/ui/shared/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/shared/widgets/navbar_avatar.dart';
@@ -16,22 +17,20 @@ class Navbar extends StatelessWidget {
       width: double.infinity,
       height: 50,
       decoration: buildBoxDecoration(),
-      child: Stack(
+      child: Row(
         children: [
-          Row(
-            children: [
-              if (size.width <= 700) IconButton(onPressed: () {}, icon: Icon(Icons.menu_outlined)),
-              SizedBox(width: 10),
-              if (size.width > 440) ConstrainedBox(constraints: BoxConstraints(maxWidth: 250), child: Searchbar()),
-              Spacer(),
-              NotificationIndicator(),
-              SizedBox(width: 15),
-              NavbarAvatar(),
-              SizedBox(width: 10)
-            ],
-          ),
-
-          if (size.width < 700) Sidebar()
+          if (size.width <= 700)
+            IconButton(
+              icon: Icon(Icons.menu_outlined),
+              onPressed: () => SideMenuProvider.openMenu()
+            ),
+          SizedBox(width: 10),
+          if (size.width > 440) ConstrainedBox(constraints: BoxConstraints(maxWidth: 250), child: Searchbar()),
+          Spacer(),
+          NotificationIndicator(),
+          SizedBox(width: 15),
+          NavbarAvatar(),
+          SizedBox(width: 10)
         ],
       ),
     );
