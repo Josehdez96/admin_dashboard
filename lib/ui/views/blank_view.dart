@@ -11,7 +11,7 @@ class BlankView extends StatelessWidget {
       child: ListView(
         physics: ClampingScrollPhysics(),
         children: [
-          Text('Dashboard view', style: CustomLabels.h1),
+          Text('Blank view', style: CustomLabels.h1),
           SizedBox(height: 10),
           WhiteCard(
             title: 'Sales Statistics',
