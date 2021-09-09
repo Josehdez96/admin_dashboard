@@ -9,6 +9,8 @@ class Flurorouter {
   static String loginRoute = '/auth/login';
   static String registerRoute = '/auth/register';
   static String dashboardRoute = '/dashboard';
+  static String iconsRoute = '/dashboard/icons';
+
 
   static void configureRoutes() {
     // Auth Routes
@@ -18,6 +20,8 @@ class Flurorouter {
 
     // Dashboard
     router.define(dashboardRoute, handler: DashboardHandlers.dashboard, transitionType: TransitionType.fadeIn);
+    router.define(iconsRoute, handler: DashboardHandlers.icons, transitionType: TransitionType.fadeIn);
+
 
     // 404
     router.notFoundHandler = NotFoundPageHandlers.notFound;
