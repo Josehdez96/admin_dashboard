@@ -19,9 +19,8 @@ class Flurorouter {
     router.define(registerRoute, handler: AdminHandlers.register, transitionType: TransitionType.none);
 
     // Dashboard
-    router.define(dashboardRoute, handler: DashboardHandlers.dashboard, transitionType: TransitionType.fadeIn);
-    router.define(iconsRoute, handler: DashboardHandlers.icons, transitionType: TransitionType.fadeIn);
-
+    router.define(dashboardRoute, handler: DashboardHandlers.dashboard, transitionType: TransitionType.none);
+    router.define(iconsRoute, handler: DashboardHandlers.icons, transitionType: TransitionType.none);
 
     // 404
     router.notFoundHandler = NotFoundPageHandlers.notFound;
