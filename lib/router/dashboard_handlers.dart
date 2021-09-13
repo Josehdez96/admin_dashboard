@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/ui/views/blank_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
@@ -16,6 +17,10 @@ class DashboardHandlers {
 
   static Handler icons = Handler(
     handlerFunc: (context, params) => authenticationValidator(IconsView(), Flurorouter.iconsRoute, context)
+  );
+
+  static Handler blank = Handler(
+    handlerFunc: (context, params) => authenticationValidator(BlankView(), Flurorouter.blankRoute, context)
   );
 
 
