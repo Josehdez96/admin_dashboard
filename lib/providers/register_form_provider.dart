@@ -8,7 +8,11 @@ class RegisterFormProvider extends ChangeNotifier {
   String email = '';
   String password = '';
 
-  validateForm() {
-    formKey.currentState!.validate();
+  bool validateForm() {
+    if ( formKey.currentState!.validate() ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
