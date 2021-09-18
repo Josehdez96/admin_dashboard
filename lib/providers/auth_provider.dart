@@ -4,6 +4,7 @@ import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/models/http/auth_response.dart';
 import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/services/notification_service.dart';
 
 enum AuthStatus {
   checking,
@@ -47,8 +48,7 @@ class AuthProvider extends ChangeNotifier {
         NavigationService.replaceTo(Flurorouter.dashboardRoute);
       })
       .catchError((error) {
-        print('Error en $error');
-        // TODO: show error notification
+        NotificationsService.showSnackbarError('Usuario ya existente');
       });
   }
 
