@@ -32,7 +32,6 @@ class LoginView extends StatelessWidget {
                 key: loginFormProvider.formKey,
                 child: Column(
                   children: [
-
                     TextFormField(
                       validator: ( value ) {
                         if (!EmailValidator.validate(value ?? '')) return 'Email no valido';
@@ -46,7 +45,8 @@ class LoginView extends StatelessWidget {
                         hint: 'Ingrese su correo',
                         label: 'Email',
                         icon: Icons.email_outlined
-                      )
+                      ),
+                      onFieldSubmitted: ( _ ) => onFormSubmit(loginFormProvider, authProvider)
                     ),
 
                     SizedBox(height: 20),
@@ -66,17 +66,14 @@ class LoginView extends StatelessWidget {
                         hint: 'Ingrese su contraseña',
                         label: 'Contraseña',
                         icon: Icons.lock_outline_rounded
-                      )
+                      ),
+                      onFieldSubmitted: ( _ ) => onFormSubmit(loginFormProvider, authProvider)
                     ),
 
                     SizedBox(height: 20),
 
                     CustomOutlinedButton(
-                      onPressed: () {
-                        final isValid = loginFormProvider.validateForm();
-                        if (isValid) 
-                        authProvider.login(loginFormProvider.email, loginFormProvider.password);
-                      },
+                      onPressed: () => onFormSubmit(loginFormProvider, authProvider),
                       text: 'Ingresar'
                     ),
 
@@ -94,5 +91,11 @@ class LoginView extends StatelessWidget {
         );
       })
     );
+  }
+
+
+  void onFormSubmit(LoginFormProvider loginFormProvider, AuthProvider authProvider) {
+    final isValid = loginFormProvider.validateForm();
+    if (isValid) authProvider.login(loginFormProvider.email, loginFormProvider.password);
   }
 }
