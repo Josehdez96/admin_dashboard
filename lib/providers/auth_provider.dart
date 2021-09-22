@@ -22,12 +22,23 @@ class AuthProvider extends ChangeNotifier {
     this.isAuthenticated();
   }
 
-  login(String email, String password) {
-    // TODO: http request - Mock http token response
-    this._token = 'jiasgdyug.aydbajui74wdfjkhaSDB.SUDYUW5ss';
-    LocalStorage.prefs.setString('token', _token!);
-    isAuthenticated();
-    NavigationService.replaceTo(Flurorouter.dashboardRoute);
+  login(String email, String password) async {
+    final data = {
+      'correo': email,
+      'password': password
+    };
+
+    CafeApi.httpPost('/auth/login', data)
+      .then((json) async {
+        final authResponse = AuthResponse.fromMap(json);
+        LocalStorage.prefs.setString('token', authResponse.token);
+        CafeApi.configureDio();
+        await isAuthenticated();
+        NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      })
+      .catchError((err) {
+        NotificationsService.showSnackbarError('Usuario/password no valido');
+      });
   }
 
   register(String email, String password, String name) {
@@ -38,13 +49,11 @@ class AuthProvider extends ChangeNotifier {
     };
 
     CafeApi.httpPost('/usuarios', data)
-      .then((json) {
-        print(json);
+      .then((json) async {
         final authResponse = AuthResponse.fromMap(json);
-        this.user = authResponse.usuario;
-
         LocalStorage.prefs.setString('token', authResponse.token);
-        isAuthenticated();
+        CafeApi.configureDio();
+        await isAuthenticated();
         NavigationService.replaceTo(Flurorouter.dashboardRoute);
       })
       .catchError((error) {
@@ -59,10 +68,19 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
-    // TODO: request to the backend to check if token is valid
-    Future.delayed(Duration(milliseconds: 1000));
-    authStatus = AuthStatus.authenticated;
-    notifyListeners();
-    return true;
+
+    try {
+      final response = await CafeApi.httpGet('/auth');
+      final authResponse = AuthResponse.fromMap(response);
+      this.user = authResponse.usuario;
+      authStatus = AuthStatus.authenticated;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      print('Desde isAuthenticated $e');
+      authStatus = AuthStatus.notAuthenticated;
+      notifyListeners();
+      return false;
+    }
   }
 }

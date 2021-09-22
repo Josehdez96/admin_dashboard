@@ -7,7 +7,7 @@ class CafeApi {
   static void configureDio() {
     _dio.options.baseUrl = 'http://localhost:8080/api';
     _dio.options.headers = {
-      'x-token': LocalStorage.prefs.get('token') ?? ''
+      'x-token': LocalStorage.prefs.getString('token') ?? ''
     };
   }
 
@@ -26,7 +26,7 @@ class CafeApi {
     final requestData = FormData.fromMap(data);
 
     try {
-      final resp = await _dio.post('/usuarios', data: requestData);
+      final resp = await _dio.post(path, data: requestData);
       return resp.data;
     } catch (e) {
       throw('Error en el POST: $e');
