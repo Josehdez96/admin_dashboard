@@ -13,8 +13,6 @@ enum AuthStatus {
 }
 
 class AuthProvider extends ChangeNotifier {
-
-  String? _token;
   AuthStatus authStatus = AuthStatus.checking;
   Usuario? user;
 
@@ -59,6 +57,11 @@ class AuthProvider extends ChangeNotifier {
       .catchError((error) {
         NotificationsService.showSnackbarError('Usuario ya existente');
       });
+  }
+
+  logout() {
+    LocalStorage.prefs.remove('token');
+    isAuthenticated();
   }
 
   Future<bool> isAuthenticated() async {
