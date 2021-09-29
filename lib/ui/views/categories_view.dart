@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:admin_dashboard/ui/cards/white_card.dart';
+import 'package:admin_dashboard/datatables/categories_datasource.dart';
+import 'package:admin_dashboard/ui/buttons/custom_icon_button.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 
-class CategoriesView extends StatelessWidget {
+class CategoriesView extends StatefulWidget {
   const CategoriesView({ Key? key }) : super(key: key);
+
+  @override
+  State<CategoriesView> createState() => _CategoriesViewState();
+}
+
+class _CategoriesViewState extends State<CategoriesView> {
+  int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +21,28 @@ class CategoriesView extends StatelessWidget {
         children: [
           Text('Categories view', style: CustomLabels.h1),
           SizedBox(height: 10),
-          WhiteCard(
-            title: 'Categorias titulo',
-            child: Text('Hola')
+          PaginatedDataTable(
+            columns: [
+              DataColumn(label: Text('ID')),
+              DataColumn(label: Text('Categoria')),
+              DataColumn(label: Text('Creado por')),
+              DataColumn(label: Text('Acciones')),
+            ],
+            source: CategoriesDataTableSource(),
+            header: Text('Categorías disponibles', maxLines: 2),
+            rowsPerPage: _rowsPerPage,
+            onRowsPerPageChanged: ( value ) {
+              setState(() {
+                _rowsPerPage = value ?? 10;
+              });
+            },
+            actions: [
+              CustomIconButton(
+                onPressed: () {}, 
+                text: 'Crear', 
+                icon: Icons.add_outlined
+              )
+            ],
           )
         ],
       )
