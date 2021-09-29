@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
+import 'package:admin_dashboard/providers/categories_provider.dart';
 import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
@@ -26,7 +27,8 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(lazy: false, create: (_) => AuthProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => SideMenuProvider())
+        ChangeNotifierProvider(lazy: false, create: (_) => SideMenuProvider()),
+        ChangeNotifierProvider(create: (_) => CategoriesProvider())
       ],
       child: MyApp(),
     );
