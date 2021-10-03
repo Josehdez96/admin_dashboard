@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/ui/modals/category_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_dashboard/datatables/categories_data_table_source.dart';
@@ -49,7 +50,12 @@ class _CategoriesViewState extends State<CategoriesView> {
             },
             actions: [
               CustomIconButton(
-                onPressed: () {}, 
+                onPressed: () {
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context, 
+                    builder: ( _ ) => CategoryModal( category: null ));
+                }, 
                 text: 'Crear', 
                 icon: Icons.add_outlined
               )
