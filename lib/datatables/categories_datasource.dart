@@ -3,8 +3,9 @@ import 'package:admin_dashboard/models/category.dart';
 
 class CategoriesDataTableSource extends DataTableSource {
   final List<Categoria> categories;
+  final BuildContext context;
 
-  CategoriesDataTableSource(this.categories);
+  CategoriesDataTableSource(this.categories, this.context);
 
   @override
   DataRow getRow(int index) {
@@ -19,14 +20,34 @@ class CategoriesDataTableSource extends DataTableSource {
         DataCell(Row(
           children: [
             IconButton(
+              icon: Icon(Icons.edit_outlined),
               onPressed: () {
                 print('Category: ${category.id}');
-              },
-              icon: Icon(Icons.edit_outlined)
+              }
             ),
             IconButton(
-              onPressed: () {}, 
-              icon: Icon(Icons.delete_forever, color: Colors.red.withOpacity(0.5))
+              icon: Icon(Icons.delete_forever, color: Colors.red.withOpacity(0.5)),
+              onPressed: () {
+                final dialog = AlertDialog(
+                  title: Text('¿Estás seguro de borrarlo?'),
+                  content: Text('¿Borrar definitivamente ${category.nombre}?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }, 
+                      child: Text('No')
+                    ),
+                    TextButton(
+                      onPressed: () {}, 
+                      child: Text('Si, borrar')
+                    )
+                  ],
+                );
+
+                showDialog(context: context, builder: ( _ ) => dialog);
+
+              }
             )
           ],
         )),
