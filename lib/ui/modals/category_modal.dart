@@ -1,5 +1,8 @@
-import 'package:admin_dashboard/models/category.dart';
+import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
+import 'package:admin_dashboard/models/category.dart';
+import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
+import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 
 class CategoryModal extends StatefulWidget {
   final Categoria? category;
@@ -24,8 +27,48 @@ class _CategoryModalState extends State<CategoryModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       height: 500,
       decoration: buildBoxDecoration(),
+      child: Column(
+        children: [
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(widget.category?.nombre ?? 'Nueva categoría', style: CustomLabels.h1.copyWith(color: Colors.white)),
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.close, color: Colors.white)
+              )
+            ],
+          ),
+          Divider(color: Colors.white.withOpacity(0.3)),
+          SizedBox(height: 20),
+          TextFormField(
+            initialValue: widget.category?.nombre ?? '',
+            onChanged: ( value ) => name = value,
+            decoration: CustomInput.authInputDecoration(
+              hint: 'Nombre de la categoría',
+              label: 'Categoría',
+              icon: Icons.new_releases_outlined
+            ),
+            style: TextStyle(color: Colors.white),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(top: 30),
+            alignment: Alignment.center,
+            child: CustomOutlinedButton(
+              text: 'Guardar',
+              color: Colors.white,
+              onPressed: () async {},
+            ),
+          )
+
+
+        ],
+      ),
     );
   }
 
