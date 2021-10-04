@@ -23,7 +23,7 @@ class CategoriesProvider extends ChangeNotifier {
       categories.add(categoryJson);
       notifyListeners();
     } catch (e) {
-      print('We got an error on newCategory --> $e');
+      throw 'We got an error on newCategory --> $e';
     }
   }
 
@@ -40,7 +40,7 @@ class CategoriesProvider extends ChangeNotifier {
       }).toList();
       notifyListeners();
     } catch (e) {
-      print('We got an error on update --> $e');
+      throw 'We got an error on update --> $e';
     }
   }
 

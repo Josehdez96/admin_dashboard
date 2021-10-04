@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
@@ -67,14 +68,22 @@ class _CategoryModalState extends State<CategoryModal> {
               text: 'Guardar',
               color: Colors.white,
               onPressed: () async {
-                if (id == null) {
-                  // create
-                  await categoryProvider.newCategory(name);
-                } else {
-                  // update
-                  await categoryProvider.updateCategory(name, id!);
+                try {
+                  if (id == null) {
+                    // create
+                    await categoryProvider.newCategory(name);
+                    NotificationsService.showSnackbar('Categoría creada');
+                  } else {
+                    // update
+                    await categoryProvider.updateCategory(name, id!);
+                    NotificationsService.showSnackbar('Categoría actualizada');
+                  }
+                  Navigator.pop(context);
+                } catch (err) {
+                  Navigator.pop(context);
+                  NotificationsService.showSnackbarError('No se pudo guardar la categoría');
                 }
-                Navigator.pop(context);
+                
               },
             ),
           )
