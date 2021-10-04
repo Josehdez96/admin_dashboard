@@ -43,4 +43,14 @@ class CategoriesProvider extends ChangeNotifier {
       print('We got an error on update --> $e');
     }
   }
+
+  Future deleteCategory(String id) async {
+    try {
+      await CafeApi.httpDelete('/categorias/$id', {});
+      this.categories.removeWhere((element) => element.id == id);
+      notifyListeners();
+    } catch (e) {
+      print('We got an error on update --> $e');
+    }
+  }
 }

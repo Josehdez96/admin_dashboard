@@ -1,4 +1,6 @@
+import 'package:admin_dashboard/providers/categories_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:admin_dashboard/ui/modals/category_modal.dart';
 import 'package:admin_dashboard/models/category.dart';
 
@@ -44,7 +46,11 @@ class CategoriesDataTableSource extends DataTableSource {
                       child: Text('No')
                     ),
                     TextButton(
-                      onPressed: () {}, 
+                      onPressed: () async {
+                        await Provider.of<CategoriesProvider>(context, listen: false)
+                          .deleteCategory(category.id);
+                        Navigator.pop(context);
+                      }, 
                       child: Text('Si, borrar')
                     )
                   ],

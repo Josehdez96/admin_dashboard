@@ -22,9 +22,7 @@ class CafeApi {
   }
 
   static Future httpPost( String path, Map<String, dynamic> data ) async {
-
     final requestData = FormData.fromMap(data);
-
     try {
       final resp = await _dio.post(path, data: requestData);
       return resp.data;
@@ -34,14 +32,22 @@ class CafeApi {
   }
 
   static Future httpPut( String path, Map<String, dynamic> data ) async {
-
     final requestData = FormData.fromMap(data);
-
     try {
       final resp = await _dio.put(path, data: requestData);
       return resp.data;
     } catch (e) {
       throw('Error en el PUT: $e');
+    }
+  }
+
+  static Future httpDelete( String path, Map<String, dynamic> data ) async {
+    final requestData = FormData.fromMap(data);
+    try {
+      final resp = await _dio.delete(path, data: requestData);
+      return resp.data;
+    } catch (e) {
+      throw('Error en el DELETE: $e');
     }
   }
 }
