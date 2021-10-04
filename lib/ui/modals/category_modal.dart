@@ -72,6 +72,7 @@ class _CategoryModalState extends State<CategoryModal> {
                   await categoryProvider.newCategory(name);
                 } else {
                   // update
+                  await categoryProvider.updateCategory(name, id!);
                 }
                 Navigator.pop(context);
               },

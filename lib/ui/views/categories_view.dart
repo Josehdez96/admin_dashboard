@@ -54,7 +54,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                   showModalBottomSheet(
                     backgroundColor: Colors.transparent,
                     context: context, 
-                    builder: ( _ ) => CategoryModal( category: null ));
+                    builder: ( _ ) => CategoryModal( category: null )
+                  );
                 }, 
                 text: 'Crear', 
                 icon: Icons.add_outlined

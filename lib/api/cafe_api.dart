@@ -32,4 +32,16 @@ class CafeApi {
       throw('Error en el POST: $e');
     }
   }
+
+  static Future httpPut( String path, Map<String, dynamic> data ) async {
+
+    final requestData = FormData.fromMap(data);
+
+    try {
+      final resp = await _dio.put(path, data: requestData);
+      return resp.data;
+    } catch (e) {
+      throw('Error en el PUT: $e');
+    }
+  }
 }

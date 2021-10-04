@@ -10,7 +10,6 @@ class CategoriesProvider extends ChangeNotifier {
     final resp = await CafeApi.httpGet('/categorias');
     final categoriesJson = CategoriesResponse.fromMap(resp);
     this.categories = [...categoriesJson.categorias];
-    print(this.categories);
     notifyListeners();
   }
 
@@ -24,7 +23,24 @@ class CategoriesProvider extends ChangeNotifier {
       categories.add(categoryJson);
       notifyListeners();
     } catch (e) {
-      print('We have got an error --> $e');
+      print('We got an error on newCategory --> $e');
+    }
+  }
+
+  Future updateCategory(String name, String id) async {
+    final data = {
+      'nombre': name
+    };
+    try {
+      await CafeApi.httpPut('/categorias/$id', data);
+      this.categories = this.categories.map((category) {
+        if (category.id != id) return category;
+        category.nombre = name;
+        return category;
+      }).toList();
+      notifyListeners();
+    } catch (e) {
+      print('We got an error on update --> $e');
     }
   }
 }
