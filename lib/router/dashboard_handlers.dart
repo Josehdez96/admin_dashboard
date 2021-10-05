@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/ui/views/users_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fluro/fluro.dart';
@@ -26,6 +27,10 @@ class DashboardHandlers {
 
   static Handler categories = Handler(
     handlerFunc: (context, params) => authenticationValidator(CategoriesView(), Flurorouter.categoriesRoute, context)
+  );
+
+  static Handler users = Handler(
+    handlerFunc: (context, params) => authenticationValidator(UsersView(), Flurorouter.usersRoute, context)
   );
 
 
