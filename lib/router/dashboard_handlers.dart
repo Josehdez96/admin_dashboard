@@ -10,7 +10,7 @@ import 'package:admin_dashboard/ui/views/icons_view.dart';
 import 'package:admin_dashboard/ui/views/login_view.dart';
 import 'package:admin_dashboard/ui/views/dashboard_view.dart';
 import 'package:admin_dashboard/ui/views/users_view.dart';
-import 'package:admin_dashboard/ui/views/user_view.dart';
+import 'package:admin_dashboard/ui/views/user_view/user_view.dart';
 
 class DashboardHandlers {
 
