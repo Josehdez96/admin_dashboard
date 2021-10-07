@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/users_provider.dart';
 import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -61,6 +62,7 @@ class UserViewForm extends StatelessWidget {
                   final saved = await userFormProvider.updateUser();
                   if ( saved ) {
                     NotificationsService.showSnackbar('Usuario actualizado');
+                    Provider.of<UsersProvider>(context, listen: false).refreshUser(user);
                   } else {
                     NotificationsService.showSnackbarError('No se pudo guardar');
                   }
