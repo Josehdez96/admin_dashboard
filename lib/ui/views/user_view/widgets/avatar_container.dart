@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 
@@ -6,6 +8,10 @@ class AvatarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final userFormProvider = Provider.of<UserFormProvider>(context);
+    final user = userFormProvider.user!;
+
     return WhiteCard(
       width: 250,
       child: Container(
@@ -46,7 +52,7 @@ class AvatarContainer extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Nombre de usuario',
+              user.nombre,
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],

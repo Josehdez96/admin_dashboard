@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/ui/views/user_view/widgets/user_view_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +26,13 @@ class _UserViewState extends State<UserView> {
   @override
   void initState() {
     super.initState();
+    final userFormProvider = Provider.of<UserFormProvider>(context, listen: false);
     final usersProvider = Provider.of<UsersProvider>(context, listen: false);
     usersProvider.getUserById(widget.uid)
-      .then((value) => setState(() { this.user = value; }));
+      .then((value) {
+          userFormProvider.user = value;
+          setState(() { this.user = value; });
+        });
   }
 
   @override
