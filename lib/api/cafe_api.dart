@@ -36,7 +36,7 @@ class CafeApi {
     try {
       final resp = await _dio.put(path, data: requestData);
       return resp.data;
-    } catch (e) {
+    } on DioError catch (e) {
       throw('Error en el PUT: $e');
     }
   }

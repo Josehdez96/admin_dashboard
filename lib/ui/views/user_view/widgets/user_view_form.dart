@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:email_validator/email_validator.dart';
@@ -56,9 +57,13 @@ class UserViewForm extends StatelessWidget {
             ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 113),
               child: ElevatedButton(
-                onPressed: () {
-                  // TODO: PUT update user
-                  userFormProvider.updateUser();
+                onPressed: () async {
+                  final saved = await userFormProvider.updateUser();
+                  if ( saved ) {
+                    NotificationsService.showSnackbar('Usuario actualizado');
+                  } else {
+                    NotificationsService.showSnackbarError('No se pudo guardar');
+                  }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.indigo),
