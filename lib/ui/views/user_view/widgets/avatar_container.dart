@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
@@ -41,8 +42,22 @@ class AvatarContainer extends StatelessWidget {
                       child: FloatingActionButton(
                         backgroundColor: Colors.indigo,
                         child: Icon(Icons.camera_alt_outlined, size: 20),
-                        onPressed: () {
-                          // TODO: Seleccionar img
+                        onPressed: () async {
+                          FilePickerResult? result = await FilePicker.platform.pickFiles(
+                            allowedExtensions: ['jpg', 'jpeg', 'png'],
+                            allowMultiple: false
+                          );
+
+                          if (result != null) {
+                            PlatformFile file = result.files.first;
+
+                            print(file.name);
+                            print(file.bytes);
+                            print(file.size);
+                            print(file.extension);
+                          } else {
+                            // User canceled the picker
+                          }
                         },
                       ),
                     ),
