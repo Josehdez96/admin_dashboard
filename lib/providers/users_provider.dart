@@ -21,13 +21,13 @@ class UsersProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Usuario> getUserById( String uid ) async {
+  Future<Usuario?> getUserById( String uid ) async {
     try {
       final res = await CafeApi.httpGet('/usuarios/$uid');
       final user = Usuario.fromMap(res);
       return user;
     } catch (err) {
-      throw err;
+      return null;
     }
   }
 

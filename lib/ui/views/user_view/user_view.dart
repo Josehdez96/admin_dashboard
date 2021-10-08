@@ -1,4 +1,7 @@
 import 'package:admin_dashboard/providers/user_form_provider.dart';
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:admin_dashboard/ui/views/user_view/widgets/user_view_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,9 +33,23 @@ class _UserViewState extends State<UserView> {
     final usersProvider = Provider.of<UsersProvider>(context, listen: false);
     usersProvider.getUserById(widget.uid)
       .then((value) {
+
+        if (value != null) {
           userFormProvider.user = value;
+          userFormProvider.formKey = new GlobalKey<FormState>();
           setState(() { this.user = value; });
-        });
+        } else {
+          NotificationsService.showSnackbarError('Error al entrar al usuario');
+          NavigationService.replaceTo(Flurorouter.usersRoute);
+        }
+      });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    this.user = null;
+    Provider.of<UserFormProvider>(context, listen: false).user = null;
   }
 
   @override
