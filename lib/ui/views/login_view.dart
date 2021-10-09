@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:admin_dashboard/providers/auth_provider.dart';
-import 'package:admin_dashboard/providers/login_form_provider.dart';
+import 'package:admin_dashboard/providers/providers.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';

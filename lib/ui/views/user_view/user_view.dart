@@ -1,15 +1,13 @@
-import 'package:admin_dashboard/providers/user_form_provider.dart';
-import 'package:admin_dashboard/router/router.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
-import 'package:admin_dashboard/services/notification_service.dart';
-import 'package:admin_dashboard/ui/views/user_view/widgets/user_view_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:admin_dashboard/models/usuario.dart';
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/services.dart';
+import 'package:admin_dashboard/providers/providers.dart';
+import 'package:admin_dashboard/ui/views/user_view/widgets/user_view_form.dart';
 import 'package:admin_dashboard/ui/views/user_view/widgets/avatar_container.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
-import 'package:admin_dashboard/providers/users_provider.dart';
+import 'package:admin_dashboard/models/usuario.dart';
 
 class UserView extends StatefulWidget {
   final String uid;

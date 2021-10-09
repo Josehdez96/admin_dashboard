@@ -1,5 +1,5 @@
-import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/ui/shared/navbar.dart';
 import 'package:admin_dashboard/ui/shared/sidebar.dart';
 

@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/models/http/users_response.dart';
-import 'package:flutter/material.dart';
 import 'package:admin_dashboard/models/usuario.dart';
 
 class UsersProvider extends ChangeNotifier {
