@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
@@ -48,8 +49,10 @@ class AvatarContainer extends StatelessWidget {
                           );
 
                           if (result != null) {
+                            NotificationsService.showBusyIndicator(context);
                             PlatformFile file = result.files.first;
-                            final resp = await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
+                            await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
+                            Navigator.of(context).pop();
                           } else {
                             // User canceled the picker
                           }
