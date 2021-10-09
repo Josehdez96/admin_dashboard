@@ -7,7 +7,7 @@ class CafeApi {
   static Dio _dio = new Dio();
 
   static void configureDio() {
-    _dio.options.baseUrl = 'http://localhost:8080/api';
+    _dio.options.baseUrl = 'https://flutter-web-admin-jose-daniel.herokuapp.com/api';
     _dio.options.headers = {
       'x-token': LocalStorage.prefs.getString('token') ?? ''
     };
