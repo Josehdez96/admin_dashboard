@@ -44,17 +44,12 @@ class AvatarContainer extends StatelessWidget {
                         child: Icon(Icons.camera_alt_outlined, size: 20),
                         onPressed: () async {
                           FilePickerResult? result = await FilePicker.platform.pickFiles(
-                            allowedExtensions: ['jpg', 'jpeg', 'png'],
                             allowMultiple: false
                           );
 
                           if (result != null) {
                             PlatformFile file = result.files.first;
-
-                            print(file.name);
-                            print(file.bytes);
-                            print(file.size);
-                            print(file.extension);
+                            final resp = await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
                           } else {
                             // User canceled the picker
                           }
