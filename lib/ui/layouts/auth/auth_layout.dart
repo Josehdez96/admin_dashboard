@@ -7,43 +7,34 @@ import 'package:admin_dashboard/ui/layouts/auth/widgets/background_twitter.dart'
 class AuthLayout extends StatelessWidget {
   final Widget child;
 
-  const AuthLayout({
-    Key? key,
-    required this.child
-    }) : super(key: key);
+  const AuthLayout({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Scrollbar(
-        child: ListView(
-          physics: ClampingScrollPhysics(),
-          children: [
-            ( size.width > 1000) 
+        body: Scrollbar(
+      child: ListView(
+        physics: ClampingScrollPhysics(),
+        children: [
+          (size.width > 1000)
               ? _DesktopBody(child: child)
               : _MobileBody(child: child),
-            LinksBar()
-          ],
-        ),
-      )
-    );
+          LinksBar()
+        ],
+      ),
+    ));
   }
 }
 
 class _DesktopBody extends StatelessWidget {
   final Widget child;
 
-  const _DesktopBody({
-    Key? key,
-    required this.child
-    }) : super(key: key);
+  const _DesktopBody({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -73,13 +64,9 @@ class _DesktopBody extends StatelessWidget {
 }
 
 class _MobileBody extends StatelessWidget {
-
   final Widget child;
 
-  const _MobileBody({
-    Key? key,
-    required this.child
-    }) : super(key: key);
+  const _MobileBody({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +77,7 @@ class _MobileBody extends StatelessWidget {
         children: [
           SizedBox(height: 20),
           CustomTitle(),
-          Container(
-            width: double.infinity,
-            height: 420,
-            child: child
-          ),
+          Container(width: double.infinity, height: 420, child: child),
           Container(
             width: double.infinity,
             height: 400,
